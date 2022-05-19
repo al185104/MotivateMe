@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MotivateMe.ViewModels"
+             xmlns:helper="clr-namespace:MotivateMe.Models"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="MotivateMe.MainPage"
+             BackgroundColor="{StaticResource Background}">
+    <Grid>
+
+        <Label Text="{Static helper:IconFont.QuoteLeft}" FontFamily="Icon" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" Margin="20" TranslationY="-100" FontSize="Header"/>
+
+        <ScrollView BackgroundColor="Transparent" VerticalOptions="Center">
+            <VerticalStackLayout Spacing="25" Padding="30" x:DataType="vm:MainPageViewModel" BackgroundColor="Transparent">
+
+                <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:ddd dd MMMM}'}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+
+                <Label 
+                    Text="{Binding Quote.Text}"
+                    SemanticProperties.HeadingLevel="Level1"
+                    SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                    FontSize="18"
+                    HorizontalOptions="Center" 
+                    HorizontalTextAlignment="Center"/>
+
+                <Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" Color="{StaticResource Accent}" HeightRequest="1"/>
+                    <Label 
+                        Text="{Binding Quote.Author}"
+                        FontSize="Caption"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        x:Name="CounterLabel"
+                        BackgroundColor="{StaticResource Background}"
+                        Padding="10"
+                        HorizontalOptions="Center" />
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid BackgroundColor="Transparent">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding StartUpCommand}"/>
+            </Grid.GestureRecognizers>
+        </Grid>
+    </Grid>
+</ContentPage>
